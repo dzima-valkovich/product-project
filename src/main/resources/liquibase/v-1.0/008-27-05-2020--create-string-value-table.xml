@@ -5,29 +5,20 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="002-21-05-2020--create-attribute-table" author="dima.volkovitch@yandex.by" runOnChange="true">
-        <createTable tableName="ia_attributes">
+    <changeSet id="008-27-05-2020--create-string-value-table" author="dima.volkovitch@yandex.by" runOnChange="true">
+        <createTable tableName="ia_string_values">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="type" type="VARCHAR(10)">
-                <constraints nullable="false"/>
-            </column>
             <column name="value" type="VARCHAR(255)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="product_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="ia_attributes"
-                                 constraintName="fk_attributes_products"
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="ia_string_values"
+                                 constraintName="fk_string_values_attributes"
                                  referencedColumnNames="id"
-                                 referencedTableName="ia_products"
+                                 referencedTableName="ia_attributes"
                                  onDelete="CASCADE"
                                  onUpdate="CASCADE"/>
     </changeSet>

@@ -5,17 +5,17 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="004-22-05-2020--add-some-products" author="dima.volkovitch@yandex.by" runOnChange="true">
-        <insert tableName="ia_products">
-            <column name="id" value="1"/>
-            <column name="name" value="test_product_1"/>
+    <changeSet id="016-27-05-2020--add-some-boolean-values" author="dima.volkovitch@yandex.by" runOnChange="true">
+        <insert tableName="ia_boolean_values">
+            <column name="id" value="3"/>
+            <column name="value" value="1"/>
         </insert>
-        <insert tableName="ia_products">
-            <column name="id" value="2"/>
-            <column name="name" value="test_product_2"/>
+        <insert tableName="ia_boolean_values">
+            <column name="id" value="7"/>
+            <column name="value" value="0"/>
         </insert>
         <rollback>
-            <delete tableName="ia_products"/>
+            <delete tableName="ia_boolean_values"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>

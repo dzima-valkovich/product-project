@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="017-27-05-2020--add-some-date-values" author="dima.volkovitch@yandex.by" runOnChange="true">
+        <insert tableName="ia_date_values">
+            <column name="id" value="4"/>
+            <column name="value" value="SYSTIMESTAMP"/>
+        </insert>
+        <insert tableName="ia_date_values">
+            <column name="id" value="8"/>
+            <column name="value" value="SYSTIMESTAMP"/>
+        </insert>
+        <rollback>
+            <delete tableName="ia_date_values"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

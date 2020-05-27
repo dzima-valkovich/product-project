@@ -10,4 +10,17 @@
     <include file="003-21-05-2020--add-check-constraint-to-attribute-type.xml" relativeToChangelogFile="true"/>
     <include file="004-22-05-2020--add-some-products.xml" relativeToChangelogFile="true"/>
     <include file="005-22-05-2020--add-some-attributes.xml" relativeToChangelogFile="true"/>
+    <include file="006-27-05-2020--delete-inserted-data.xml" relativeToChangelogFile="true"/>
+    <include file="007-27-05-2020--drop-attribute-value-column.xml" relativeToChangelogFile="true"/>
+    <include file="008-27-05-2020--create-string-value-table.xml" relativeToChangelogFile="true"/>
+    <include file="009-27-05-2020--create-long-value-table.xml" relativeToChangelogFile="true"/>
+    <include file="010-27-05-2020--create-boolean-values-table.xml" relativeToChangelogFile="true"/>
+    <include file="011-27-05-2020--create-date-values-table.xml" relativeToChangelogFile="true"/>
+    <include file="012-27-05-2020--add-some-products.xml" relativeToChangelogFile="true"/>
+    <include file="013-27-05-2020--add-some-attributes.xml" relativeToChangelogFile="true"/>
+    <include file="014-27-05-2020--add-some-string-values.xml" relativeToChangelogFile="true"/>
+    <include file="015-27-05-2020--add-some-long-values.xml" relativeToChangelogFile="true"/>
+    <include file="016-27-05-2020--add-some-boolean-values.xml" relativeToChangelogFile="true"/>
+    <include file="017-27-05-2020--add-some-date-values.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

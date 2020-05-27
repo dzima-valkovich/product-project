@@ -24,5 +24,8 @@
             <column name="type" value="Long"/>
             <column name="product_id" value="2"/>
         </insert>
+        <rollback>
+            <delete tableName="ia_attributes"/>
+        </rollback>
     </changeSet>
 </databaseChangeLog>
