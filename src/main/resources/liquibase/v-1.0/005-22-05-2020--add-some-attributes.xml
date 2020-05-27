@@ -9,19 +9,19 @@
         <insert tableName="ia_attributes">
             <column name="id" value="1"/>
             <column name="name" value="test_attribute_1"/>
-            <column name="type" value="String"/>
+            <column name="type" value="STRING"/>
             <column name="product_id" value="1"/>
         </insert>
         <insert tableName="ia_attributes">
             <column name="id" value="2"/>
             <column name="name" value="test_attribute_2"/>
-            <column name="type" value="Long"/>
+            <column name="type" value="LONG"/>
             <column name="product_id" value="2"/>
         </insert>
         <insert tableName="ia_attributes">
             <column name="id" value="3"/>
             <column name="name" value="test_attribute_3"/>
-            <column name="type" value="Long"/>
+            <column name="type" value="LONG"/>
             <column name="product_id" value="2"/>
         </insert>
         <rollback>
