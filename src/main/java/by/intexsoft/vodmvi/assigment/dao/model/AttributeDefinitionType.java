@@ -1,6 +1,6 @@
 package by.intexsoft.vodmvi.assigment.dao.model;
 
-public enum AttributeType {
+public enum AttributeDefinitionType {
     STRING,
     LONG,
     BOOLEAN,

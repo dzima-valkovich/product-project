@@ -13,7 +13,7 @@ public class Product extends IAEntity {
     @Column(nullable = false)
     private String name;
     @OneToMany(mappedBy = "product")
-    private List<Attribute> attributes;
+    private List<Value> values;
 
     public String getName() {
         return name;
@@ -23,11 +23,11 @@ public class Product extends IAEntity {
         this.name = name;
     }
 
-    public List<Attribute> getAttributes() {
-        return attributes;
+    public List<Value> getValues() {
+        return values;
     }
 
-    public void setAttributes(List<Attribute> attributes) {
-        this.attributes = attributes;
+    public void setValues(List<Value> values) {
+        this.values = values;
     }
 }
