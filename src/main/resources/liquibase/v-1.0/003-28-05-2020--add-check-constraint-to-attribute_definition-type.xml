@@ -5,9 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="003-21-05-2020--add-check-constraint-to-attribute-type" author="dima.volkovitch@yandex.by" runOnChange="true">
+    <changeSet id="003-27-05-2020--add-check-constraint-to-attribute_definition-type" author="dima.volkovitch@yandex.by"
+               runOnChange="true">
         <sql>
-            ALTER TABLE ia_attributes ADD CONSTRAINT check_value_type CHECK (type IN ('STRING','LONG','BOOLEAN','DATE'))
+            ALTER TABLE ia_attribute_definitions ADD CONSTRAINT check_value_type CHECK (type IN
+            ('STRING','LONG','BOOLEAN','DATE'))
         </sql>
     </changeSet>
 </databaseChangeLog>

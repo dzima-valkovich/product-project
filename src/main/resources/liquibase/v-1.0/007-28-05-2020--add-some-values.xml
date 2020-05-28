@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="007-28-05-2020--add-some-values" author="dima.volkovitch@yandex.by" runOnChange="true">
+        <insert tableName="ia_values">
+            <column name="id" value="1"/>
+            <column name="long_value" value="123456789"/>
+            <column name="product_id" value="1"/>
+            <column name="attribute_definition_id" value="1"/>
+        </insert>
+        <insert tableName="ia_values">
+            <column name="id" value="2"/>
+            <column name="long_value" value="987654321"/>
+            <column name="product_id" value="2"/>
+            <column name="attribute_definition_id" value="1"/>
+        </insert>
+        <insert tableName="ia_values">
+            <column name="id" value="3"/>
+            <column name="string_value" value="test_string_value_1"/>
+            <column name="product_id" value="1"/>
+            <column name="attribute_definition_id" value="2"/>
+        </insert>
+        <insert tableName="ia_values">
+            <column name="id" value="4"/>
+            <column name="string_value" value="test_string_value_2"/>
+            <column name="product_id" value="2"/>
+            <column name="attribute_definition_id" value="2"/>
+        </insert>
+        <rollback>
+            <delete tableName="ia_values"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

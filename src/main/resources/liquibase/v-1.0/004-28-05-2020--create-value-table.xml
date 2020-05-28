@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="004-28-05-2020--create-value-table" author="dima.volkovitch@yandex.by" runOnChange="true">
+        <createTable tableName="ia_values">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="string_value" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="long_value" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="boolean_value" type="BOOLEAN">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_value" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="attribute_definition_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="ia_values"
+                                 constraintName="fk_values_products"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ia_products"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+        <addForeignKeyConstraint baseColumnNames="attribute_definition_id"
+                                 baseTableName="ia_values"
+                                 constraintName="fk_values_attribute_definitions"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ia_attribute_definitions"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+        <sql>
+            ALTER TABLE ia_values ADD CONSTRAINT check_only_one_value CHECK
+            (
+            (string_value IS NOT NULL AND long_value IS NULL AND boolean_value IS NULL AND date_value IS NULL) OR
+            (string_value IS NULL AND long_value IS NOT NULL AND boolean_value IS NULL AND date_value IS NULL) OR
+            (string_value IS NULL AND long_value IS NULL AND boolean_value IS NOT NULL AND date_value IS NULL) OR
+            (string_value IS NULL AND long_value IS NULL AND boolean_value IS NULL AND date_value IS NOT NULL))
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="001-21-05-2020--create-product-tables" author="dima.volkovitch@yandex.by" runOnChange="true">
+    <changeSet id="001-27-05-2020--create-product-tables" author="dima.volkovitch@yandex.by" runOnChange="true">
         <createTable tableName="ia_products">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
