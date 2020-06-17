@@ -1,4 +1,4 @@
-package by.intexsoft.vodmvi.assigment.dao.model;
+package by.intexsoft.vodmvi.assigment.model;
 
 public enum AttributeDefinitionType {
     STRING,

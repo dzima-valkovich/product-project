@@ -32,7 +32,7 @@
 
     <bean id="entityManagerFactory" name="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="myDataSource"/>
-        <property name="packagesToScan" value="by.intexsoft.vodmvi.assigment.dao.model"/>
+        <property name="packagesToScan" value="by.intexsoft.vodmvi.assigment.model"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>

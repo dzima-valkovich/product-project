@@ -1,4 +1,4 @@
-package by.intexsoft.vodmvi.assigment.dao.model;
+package by.intexsoft.vodmvi.assigment.model;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
