@@ -1,4 +1,4 @@
-package by.intexsoft.vodmvi.assigment.model;
+package by.intexsoft.vodmvi.assigment.api.dao.model;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,7 +1,7 @@
 package by.intexsoft.vodmvi.assigment.dao;
 
 import by.intexsoft.vodmvi.assigment.api.dao.IGenericDao;
-import by.intexsoft.vodmvi.assigment.model.IAEntity;
+import by.intexsoft.vodmvi.assigment.api.dao.model.IAEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
