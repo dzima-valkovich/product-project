@@ -12,4 +12,6 @@
     <include file="005-28-05-2020--add-some-products.xml" relativeToChangelogFile="true"/>
     <include file="006-28-05-2020--add-some-attribute_definitions.xml" relativeToChangelogFile="true"/>
     <include file="007-28-05-2020--add-some-values.xml" relativeToChangelogFile="true"/>
+    <include file="008-26-06-2020--add-unique-product-name-constraint.xml" relativeToChangelogFile="true"/>
+    <include file="009-26-06-2020--add-unique-attribute_definition-name-constraint.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
