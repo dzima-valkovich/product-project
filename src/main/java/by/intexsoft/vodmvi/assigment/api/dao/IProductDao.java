@@ -2,6 +2,8 @@ package by.intexsoft.vodmvi.assigment.api.dao;
 
 import by.intexsoft.vodmvi.assigment.api.dao.model.Product;
 
-public interface IProductDao extends IGenericDao<Product> {
+import java.util.List;
 
+public interface IProductDao extends IGenericDao<Product> {
+    List<Product> getByName(String name);
 }

@@ -17,7 +17,11 @@ public interface IAttributeDefinitionService {
 
     List<AttributeDefinitionSimpleDto> getAttributeDefinitionByIds(int limit, Long... ids);
 
+    List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByProductName(String name);
+
     List<AttributeDefinitionSimpleDto> getAttributeDefinitionByIds(int offset, int limit, Long... ids);
+
+    List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByName(String name);
 
     AttributeDefinitionSimpleDto createNewAttributeDefinition(AttributeDefinitionSimpleDto dto);
 

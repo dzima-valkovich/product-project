@@ -30,6 +30,16 @@ public class AttributeDefinitionController {
         return attributeDefinitionService.getAllAttributeDefinitions(offset, limit);
     }
 
+    @GetMapping("byName")
+    public List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByName(@RequestParam(required = false) String name) {
+        return attributeDefinitionService.getAttributeDefinitionsByName(name);
+    }
+
+    @GetMapping("byProductName")
+    public List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByProductName(@RequestParam(required = false) String name) {
+        return attributeDefinitionService.getAttributeDefinitionsByProductName(name);
+    }
+
     @PostMapping
     public AttributeDefinitionSimpleDto createNewAttributeDefinition(@RequestBody AttributeDefinitionSimpleDto dto) {
         return attributeDefinitionService.createNewAttributeDefinition(dto);

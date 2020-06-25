@@ -30,6 +30,11 @@ public class ProductController {
         return productService.getAllProducts(offset, limit);
     }
 
+    @GetMapping("byName")
+    public List<ProductSimpleDto> getProductsByName(@RequestParam(required = false) String name) {
+        return productService.getProductsByName(name);
+    }
+
     @PostMapping
     public ProductSimpleDto createNewProduct(@RequestBody ProductSimpleDto dto) {
         return productService.createNewProduct(dto);

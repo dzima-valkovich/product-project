@@ -48,6 +48,16 @@ public class AttributeDefinitionService implements IAttributeDefinitionService {
     }
 
     @Override
+    public List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByName(String name) {
+        return attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinitionDao.getByName(name));
+    }
+
+    @Override
+    public List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByProductName(String name) {
+        return attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinitionDao.getByProductName(name));
+    }
+
+    @Override
     public List<AttributeDefinitionSimpleDto> getAttributeDefinitionByIds(int offset, int limit, Long... ids) {
         return attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinitionDao.getByIds(offset, limit, ids));
     }
@@ -59,13 +69,13 @@ public class AttributeDefinitionService implements IAttributeDefinitionService {
     }
 
     @Override
-    public AttributeDefinitionSimpleDto updateAttributeDefinition(AttributeDefinitionSimpleDto dto){
+    public AttributeDefinitionSimpleDto updateAttributeDefinition(AttributeDefinitionSimpleDto dto) {
         AttributeDefinition attributeDefinition = attributeDefinitionDao.update(attributeDefinitionMapper.simpleDtoToAttributeDefinition(dto));
         return attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinition);
     }
 
     @Override
-    public AttributeDefinitionSimpleDto updateAttributeDefinitionIgnoreNull(AttributeDefinitionSimpleDto dto){
+    public AttributeDefinitionSimpleDto updateAttributeDefinitionIgnoreNull(AttributeDefinitionSimpleDto dto) {
         AttributeDefinition attributeDefinition = attributeDefinitionDao.getById(dto.getId());
         attributeDefinition = attributeDefinitionDao.update(attributeDefinitionMapper.updateAttributeDefinitionFromSimpleDtoIgnoreNull(dto, attributeDefinition));
         return attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinition);
