@@ -31,8 +31,8 @@ public class AttributeDefinitionController {
     }
 
     @GetMapping("byName")
-    public List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByName(@RequestParam(required = false) String name) {
-        return attributeDefinitionService.getAttributeDefinitionsByName(name);
+    public AttributeDefinitionSimpleDto getAttributeDefinitionsByName(@RequestParam(required = false) String name) {
+        return attributeDefinitionService.getAttributeDefinitionByName(name);
     }
 
     @GetMapping("byProductName")

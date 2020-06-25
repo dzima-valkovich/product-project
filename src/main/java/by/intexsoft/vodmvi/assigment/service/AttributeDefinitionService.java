@@ -48,7 +48,7 @@ public class AttributeDefinitionService implements IAttributeDefinitionService {
     }
 
     @Override
-    public List<AttributeDefinitionSimpleDto> getAttributeDefinitionsByName(String name) {
+    public AttributeDefinitionSimpleDto getAttributeDefinitionByName(String name) {
         return attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinitionDao.getByName(name));
     }
 

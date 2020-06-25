@@ -53,7 +53,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductSimpleDto> getProductsByName(String name) {
+    public ProductSimpleDto getProductByName(String name) {
         return productMapper.productToSimpleDto(productDao.getByName(name));
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IAttributeDefinitionDao extends IGenericDao<AttributeDefinition> {
 
-    List<AttributeDefinition> getByName(String name);
+    AttributeDefinition getByName(String name);
 
     List<AttributeDefinition> getByProductName(String name);
 }

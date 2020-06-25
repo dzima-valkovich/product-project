@@ -20,11 +20,11 @@ public class AttributeDefinitionDao extends GenericDao<AttributeDefinition> impl
     }
 
     @Override
-    public List<AttributeDefinition> getByName(String name) {
+    public AttributeDefinition getByName(String name) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<AttributeDefinition> query = criteriaBuilder.createQuery(AttributeDefinition.class);
         Root<AttributeDefinition> root = query.from(AttributeDefinition.class);
-        return em.createQuery(query.where(criteriaBuilder.equal(root.get("name"), name))).getResultList();
+        return em.createQuery(query.where(criteriaBuilder.equal(root.get("name"), name))).getResultList().get(0);
     }
 
     @Override

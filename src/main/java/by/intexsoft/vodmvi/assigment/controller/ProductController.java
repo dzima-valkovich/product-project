@@ -31,8 +31,8 @@ public class ProductController {
     }
 
     @GetMapping("byName")
-    public List<ProductSimpleDto> getProductsByName(@RequestParam(required = false) String name) {
-        return productService.getProductsByName(name);
+    public ProductSimpleDto getProductsByName(@RequestParam(required = false) String name) {
+        return productService.getProductByName(name);
     }
 
     @PostMapping

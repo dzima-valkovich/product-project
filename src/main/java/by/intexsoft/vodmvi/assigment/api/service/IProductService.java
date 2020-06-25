@@ -19,7 +19,7 @@ public interface IProductService {
 
     List<ProductSimpleDto> getProductsByIds(int offset, int limit, Long... ids);
 
-    List<ProductSimpleDto> getProductsByName(String name);
+    ProductSimpleDto getProductByName(String name);
 
     ProductSimpleDto createNewProduct(ProductSimpleDto dto);
 
