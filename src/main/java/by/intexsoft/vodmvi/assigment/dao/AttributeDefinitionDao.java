@@ -24,7 +24,9 @@ public class AttributeDefinitionDao extends GenericDao<AttributeDefinition> impl
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<AttributeDefinition> query = criteriaBuilder.createQuery(AttributeDefinition.class);
         Root<AttributeDefinition> root = query.from(AttributeDefinition.class);
-        return em.createQuery(query.where(criteriaBuilder.equal(root.get("name"), name))).getResultList().get(0);
+
+        List<AttributeDefinition> list = em.createQuery(query.where(criteriaBuilder.equal(root.get("name"), name))).getResultList();
+        return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Repository
 public class ProductDao extends GenericDao<Product> implements IProductDao {
@@ -20,6 +21,8 @@ public class ProductDao extends GenericDao<Product> implements IProductDao {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Product> query = criteriaBuilder.createQuery(Product.class);
         Root<Product> root = query.from(Product.class);
-        return em.createQuery(query.where(criteriaBuilder.equal(root.get("name"), name))).getResultList().get(0);
+
+        List<Product> list = em.createQuery(query.where(criteriaBuilder.equal(root.get("name"), name))).getResultList();
+        return list.size() > 0 ? list.get(0) : null;
     }
 }

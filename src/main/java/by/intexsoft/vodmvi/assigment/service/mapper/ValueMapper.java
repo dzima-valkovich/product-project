@@ -19,6 +19,8 @@ public interface ValueMapper {
 
     Value creationDtoToValue(ValueCreationDto dto);
 
+    Value updateValueFromSimpleDto(ValueSimpleDto dto, @MappingTarget Value value);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Value updateValueFromSimpleDtoIgnoreNull(ValueSimpleDto dto, @MappingTarget Value value);
 

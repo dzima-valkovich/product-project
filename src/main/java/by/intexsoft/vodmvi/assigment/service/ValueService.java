@@ -66,7 +66,9 @@ public class ValueService implements IValueService {
 
     @Override
     public ValueFullDto updateValue(ValueSimpleDto dto) {
-        return valueMapper.valueToFullDto(valueDao.update(valueMapper.simpleDtoToValue(dto)));
+        Value value = valueDao.getById(dto.getId());
+        value = valueMapper.updateValueFromSimpleDto(dto, value);
+        return valueMapper.valueToFullDto(valueDao.update(value));
     }
 
     @Override

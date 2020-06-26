@@ -52,8 +52,8 @@ public class ValueController {
         return valueService.updateValueIgnoreNull(dto);
     }
 
-    @DeleteMapping
-    public Boolean deleteValueById(Long id) {
+    @DeleteMapping("{id}")
+    public Boolean deleteValueById(@PathVariable Long id) {
         return valueService.deleteValueById(id);
     }
 
