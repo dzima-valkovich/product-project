@@ -71,7 +71,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.4</version>
         </dependency>
-<<<<<<< HEAD
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -87,12 +86,11 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.13.3</version>
-=======
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
             <version>5.4.18.Final</version>
->>>>>>> feature/007-create-jpa-metamodel
         </dependency>
     </dependencies>
 
