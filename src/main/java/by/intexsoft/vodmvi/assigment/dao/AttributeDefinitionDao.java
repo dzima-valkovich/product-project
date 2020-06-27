@@ -1,9 +1,7 @@
 package by.intexsoft.vodmvi.assigment.dao;
 
 import by.intexsoft.vodmvi.assigment.api.dao.IAttributeDefinitionDao;
-import by.intexsoft.vodmvi.assigment.api.dao.model.AttributeDefinition;
-import by.intexsoft.vodmvi.assigment.api.dao.model.Product;
-import by.intexsoft.vodmvi.assigment.api.dao.model.Value;
+import by.intexsoft.vodmvi.assigment.api.dao.model.*;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -25,7 +23,7 @@ public class AttributeDefinitionDao extends GenericDao<AttributeDefinition> impl
         CriteriaQuery<AttributeDefinition> query = criteriaBuilder.createQuery(AttributeDefinition.class);
         Root<AttributeDefinition> root = query.from(AttributeDefinition.class);
 
-        List<AttributeDefinition> list = em.createQuery(query.where(criteriaBuilder.equal(root.get("name"), name))).getResultList();
+        List<AttributeDefinition> list = em.createQuery(query.where(criteriaBuilder.equal(root.get(AttributeDefinition_.NAME), name))).getResultList();
         return list.size() > 0 ? list.get(0) : null;
     }
 
@@ -34,8 +32,8 @@ public class AttributeDefinitionDao extends GenericDao<AttributeDefinition> impl
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<AttributeDefinition> query = criteriaBuilder.createQuery(AttributeDefinition.class);
         Root<AttributeDefinition> root = query.from(AttributeDefinition.class);
-        Join<AttributeDefinition, Value> values = root.join("values");
-        Join<Value, Product> products = values.join("product");
-        return em.createQuery(query.where(criteriaBuilder.equal(products.get("name"), name)).distinct(true)).getResultList();
+        Join<AttributeDefinition, Value> values = root.join(AttributeDefinition_.VALUES);
+        Join<Value, Product> products = values.join(Value_.PRODUCT);
+        return em.createQuery(query.where(criteriaBuilder.equal(products.get(Product_.NAME), name)).distinct(true)).getResultList();
     }
 }
