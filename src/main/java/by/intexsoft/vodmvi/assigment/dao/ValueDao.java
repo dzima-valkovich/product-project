@@ -1,7 +1,9 @@
 package by.intexsoft.vodmvi.assigment.dao;
 
 import by.intexsoft.vodmvi.assigment.api.dao.IValueDao;
+import by.intexsoft.vodmvi.assigment.api.dao.model.Product_;
 import by.intexsoft.vodmvi.assigment.api.dao.model.Value;
+import by.intexsoft.vodmvi.assigment.api.dao.model.Value_;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -22,7 +24,7 @@ public class ValueDao extends GenericDao<Value> implements IValueDao {
         CriteriaQuery<Value> criteriaQuery = criteriaBuilder.createQuery(Value.class);
         Root<Value> root = criteriaQuery.from(Value.class);
         criteriaQuery.select(root);
-        criteriaQuery = criteriaQuery.where(criteriaBuilder.equal(root.get("attributeDefinition").get("id"), productId));
+        criteriaQuery = criteriaQuery.where(criteriaBuilder.equal(root.get(Value_.ATTRIBUTE_DEFINITION).get(Product_.ID), productId));
 
         return em.createQuery(criteriaQuery).getResultList();
     }
