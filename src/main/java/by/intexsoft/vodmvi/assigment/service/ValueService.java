@@ -7,6 +7,8 @@ import by.intexsoft.vodmvi.assigment.api.service.dto.ValueCreationDto;
 import by.intexsoft.vodmvi.assigment.api.service.dto.ValueFullDto;
 import by.intexsoft.vodmvi.assigment.api.service.dto.ValueSimpleDto;
 import by.intexsoft.vodmvi.assigment.service.mapper.ValueMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ import java.util.List;
 @Service
 @Transactional
 public class ValueService implements IValueService {
+    private static final Logger logger = LoggerFactory.getLogger(ValueService.class);
+    private static final String VALUE_CREATION_MESSAGE = "New Value has bean created. id = %s.";
+    private static final String VALUE_UPDATE_MESSAGE = "Value has bean updated. id = %s.";
+    private static final String VALUE_DELETE_MESSAGE = "Value has bean deleted. id = %s.";
+
     private IValueDao valueDao;
     private ValueMapper valueMapper;
 
@@ -61,26 +68,39 @@ public class ValueService implements IValueService {
 
     @Override
     public ValueFullDto createNewValue(ValueCreationDto dto) {
-        return valueMapper.valueToFullDto(valueDao.save(valueMapper.creationDtoToValue(dto)));
+        ValueFullDto newDto = valueMapper.valueToFullDto(valueDao.save(valueMapper.creationDtoToValue(dto)));
+        logger.info(String.format(VALUE_CREATION_MESSAGE, newDto.getId()));
+        return newDto;
     }
 
     @Override
     public ValueFullDto updateValue(ValueSimpleDto dto) {
         Value value = valueDao.getById(dto.getId());
         value = valueMapper.updateValueFromSimpleDto(dto, value);
-        return valueMapper.valueToFullDto(valueDao.update(value));
+        ValueFullDto newDto = valueMapper.valueToFullDto(valueDao.update(value));
+
+        logger.info(String.format(VALUE_UPDATE_MESSAGE, newDto.getId()));
+        return newDto;
     }
 
     @Override
     public ValueFullDto updateValueIgnoreNull(ValueSimpleDto dto) {
         Value value = valueDao.getById(dto.getId());
         value = valueMapper.updateValueFromSimpleDtoIgnoreNull(dto, value);
-        return valueMapper.valueToFullDto(valueDao.update(value));
+        ValueFullDto newDto = valueMapper.valueToFullDto(valueDao.update(value));
+
+        logger.info(String.format(VALUE_UPDATE_MESSAGE, newDto.getId()));
+        return newDto;
     }
 
     @Override
     public Boolean deleteValueById(Long id) {
-        return valueDao.deleteById(id);
+        Boolean result = valueDao.deleteById(id);
+
+        if (result) {
+            logger.info(String.format(VALUE_DELETE_MESSAGE, id));
+        }
+        return result;
     }
 
     @Autowired

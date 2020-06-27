@@ -5,6 +5,8 @@ import by.intexsoft.vodmvi.assigment.api.dao.model.Product;
 import by.intexsoft.vodmvi.assigment.api.service.IProductService;
 import by.intexsoft.vodmvi.assigment.api.service.dto.ProductSimpleDto;
 import by.intexsoft.vodmvi.assigment.service.mapper.ProductMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ import java.util.List;
 @Service
 @Transactional
 public class ProductService implements IProductService {
+    private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
+    private static final String PRODUCT_CREATION_MESSAGE = "New Product has bean created. id = %s.";
+    private static final String PRODUCT_UPDATE_MESSAGE = "Product has bean updated. id = %s.";
+    private static final String PRODUCT_DELETE_MESSAGE = "Product has bean deleted. id = %s.";
+
     private IProductDao productDao;
     private ProductMapper productMapper;
 
@@ -59,24 +66,36 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductSimpleDto createNewProduct(ProductSimpleDto dto) {
-        return productMapper.productToSimpleDto(productDao.save(productMapper.simpleDtoToProduct(dto)));
+        ProductSimpleDto newDto = productMapper.productToSimpleDto(productDao.save(productMapper.simpleDtoToProduct(dto)));
+        logger.info(String.format(PRODUCT_CREATION_MESSAGE, newDto.getId()));
+        return newDto;
     }
 
     @Override
     public ProductSimpleDto updateProduct(ProductSimpleDto dto) {
-        return productMapper.productToSimpleDto(productDao.update(productMapper.simpleDtoToProduct(dto)));
+        ProductSimpleDto newDto = productMapper.productToSimpleDto(productDao.update(productMapper.simpleDtoToProduct(dto)));
+        logger.info(String.format(PRODUCT_UPDATE_MESSAGE, newDto.getId()));
+        return newDto;
     }
 
     @Override
     public ProductSimpleDto updateProductIgnoreNull(ProductSimpleDto dto) {
         Product product = productDao.getById(dto.getId());
         product = productMapper.updateProductFromSimpleDtoIgnoreNull(dto, product);
-        return productMapper.productToSimpleDto(product);
+
+        ProductSimpleDto newDto = productMapper.productToSimpleDto(product);
+        logger.info(String.format(PRODUCT_UPDATE_MESSAGE, newDto.getId()));
+        return newDto;
     }
 
     @Override
     public Boolean deleteProductById(Long id) {
-        return productDao.deleteById(id);
+        Boolean result = productDao.deleteById(id);
+
+        if (result) {
+            logger.info(String.format(PRODUCT_DELETE_MESSAGE, id));
+        }
+        return result;
     }
 
     @Autowired
