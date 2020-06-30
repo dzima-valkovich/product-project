@@ -3,7 +3,6 @@ package by.intexsoft.vodmvi.assigment.api.service.dto;
 import java.util.Date;
 
 public class ValueCreationDto {
-    private Long id;
     private String stringValue;
     private Long longValue;
     private Boolean booleanValue;
@@ -11,14 +10,6 @@ public class ValueCreationDto {
 
     private ProductSimpleDto product;
     private AttributeDefinitionSimpleDto attributeDefinition;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getStringValue() {
         return stringValue;

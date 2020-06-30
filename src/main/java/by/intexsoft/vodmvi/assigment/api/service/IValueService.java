@@ -23,6 +23,8 @@ public interface IValueService {
 
     List<ValueFullDto> getValuesByProductId(Long productId);
 
+    List<ValueFullDto> getValuesByProductName(String productName);
+
     ValueFullDto createNewValue(ValueCreationDto dto);
 
     ValueFullDto updateValue(ValueSimpleDto dto);

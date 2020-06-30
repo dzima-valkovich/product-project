@@ -7,4 +7,6 @@ import java.util.List;
 public interface IValueDao extends IGenericDao<Value> {
 
     List<Value> getByProductId(Long productId);
+
+    List<Value> getByProductName(String productName);
 }

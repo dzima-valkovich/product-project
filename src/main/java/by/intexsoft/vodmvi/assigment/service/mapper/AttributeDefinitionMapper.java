@@ -15,6 +15,8 @@ public interface AttributeDefinitionMapper {
 
     AttributeDefinition simpleDtoToAttributeDefinition(AttributeDefinitionSimpleDto dto);
 
+    AttributeDefinition updateAttributeDefinitionFromSimpleDto(AttributeDefinitionSimpleDto dto, @MappingTarget AttributeDefinition attributeDefinition);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     AttributeDefinition updateAttributeDefinitionFromSimpleDtoIgnoreNull(AttributeDefinitionSimpleDto dto, @MappingTarget AttributeDefinition attributeDefinition);
 

@@ -80,19 +80,21 @@ public class AttributeDefinitionService implements IAttributeDefinitionService {
 
     @Override
     public AttributeDefinitionSimpleDto updateAttributeDefinition(AttributeDefinitionSimpleDto dto) {
-        AttributeDefinition attributeDefinition = attributeDefinitionDao.update(attributeDefinitionMapper.simpleDtoToAttributeDefinition(dto));
-        AttributeDefinitionSimpleDto newDto = attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinition);
+        AttributeDefinition attributeDefinition = attributeDefinitionDao.getByName(dto.getName());
+        attributeDefinition = attributeDefinitionMapper.updateAttributeDefinitionFromSimpleDto(dto, attributeDefinition);
+        attributeDefinition = attributeDefinitionDao.update(attributeDefinition);
 
+        AttributeDefinitionSimpleDto newDto = attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinition);
         logger.info(String.format(ATTRIBUTE_DEFINITION_UPDATE_MESSAGE, attributeDefinition.getId()));
         return newDto;
     }
 
     @Override
     public AttributeDefinitionSimpleDto updateAttributeDefinitionIgnoreNull(AttributeDefinitionSimpleDto dto) {
-        AttributeDefinition attributeDefinition = attributeDefinitionDao.getById(dto.getId());
+        AttributeDefinition attributeDefinition = attributeDefinitionDao.getByName(dto.getName());
         attributeDefinition = attributeDefinitionDao.update(attributeDefinitionMapper.updateAttributeDefinitionFromSimpleDtoIgnoreNull(dto, attributeDefinition));
-        AttributeDefinitionSimpleDto newDto = attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinition);
 
+        AttributeDefinitionSimpleDto newDto = attributeDefinitionMapper.attributeDefinitionToSimpleDto(attributeDefinition);
         logger.info(String.format(ATTRIBUTE_DEFINITION_UPDATE_MESSAGE, attributeDefinition.getId()));
         return newDto;
     }
@@ -105,6 +107,16 @@ public class AttributeDefinitionService implements IAttributeDefinitionService {
             logger.info(String.format(ATTRIBUTE_DEFINITION_DELETE_MESSAGE, id));
         }
         return result;
+    }
+
+    @Override
+    public Boolean deleteAttributeDefinitionByName(String name) {
+        AttributeDefinition attributeDefinition = attributeDefinitionDao.getByName(name);
+
+        if (attributeDefinition != null) {
+            return deleteAttributeDefinitionById(attributeDefinition.getId());
+        }
+        return false;
     }
 
     @Autowired

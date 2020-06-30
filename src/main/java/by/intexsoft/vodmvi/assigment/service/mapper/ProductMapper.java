@@ -15,6 +15,8 @@ public interface ProductMapper {
 
     Product simpleDtoToProduct(ProductSimpleDto dto);
 
+    Product updateProductFromSimpleDto(ProductSimpleDto dto, @MappingTarget Product product);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Product updateProductFromSimpleDtoIgnoreNull(ProductSimpleDto dto, @MappingTarget Product product);
 

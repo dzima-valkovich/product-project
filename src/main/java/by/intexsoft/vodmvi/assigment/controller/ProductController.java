@@ -55,6 +55,11 @@ public class ProductController {
         return productService.deleteProductById(id);
     }
 
+    @DeleteMapping("name/{name}")
+    public Boolean deleteProductByName(@PathVariable String name) {
+        return productService.deleteProductByName(name);
+    }
+
     @Autowired
     public void setProductService(IProductService productService) {
         this.productService = productService;

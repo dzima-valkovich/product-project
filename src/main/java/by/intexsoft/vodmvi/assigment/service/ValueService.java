@@ -1,5 +1,7 @@
 package by.intexsoft.vodmvi.assigment.service;
 
+import by.intexsoft.vodmvi.assigment.api.dao.IAttributeDefinitionDao;
+import by.intexsoft.vodmvi.assigment.api.dao.IProductDao;
 import by.intexsoft.vodmvi.assigment.api.dao.IValueDao;
 import by.intexsoft.vodmvi.assigment.api.dao.model.Value;
 import by.intexsoft.vodmvi.assigment.api.service.IValueService;
@@ -24,6 +26,8 @@ public class ValueService implements IValueService {
     private static final String VALUE_DELETE_MESSAGE = "Value has bean deleted. id = %s.";
 
     private IValueDao valueDao;
+    private IProductDao productDao;
+    private IAttributeDefinitionDao attributeDefinitionDao;
     private ValueMapper valueMapper;
 
     @Override
@@ -67,8 +71,17 @@ public class ValueService implements IValueService {
     }
 
     @Override
+    public List<ValueFullDto> getValuesByProductName(String productName) {
+        return valueMapper.valueToFullDto(valueDao.getByProductName(productName));
+    }
+
+    @Override
     public ValueFullDto createNewValue(ValueCreationDto dto) {
-        ValueFullDto newDto = valueMapper.valueToFullDto(valueDao.save(valueMapper.creationDtoToValue(dto)));
+        Value value = valueMapper.creationDtoToValue(dto);
+        value.setProduct(productDao.getByName(dto.getProduct().getName()));
+        value.setAttributeDefinition(attributeDefinitionDao.getByName(dto.getAttributeDefinition().getName()));
+
+        ValueFullDto newDto = valueMapper.valueToFullDto(valueDao.save(value));
         logger.info(String.format(VALUE_CREATION_MESSAGE, newDto.getId()));
         return newDto;
     }
@@ -106,6 +119,16 @@ public class ValueService implements IValueService {
     @Autowired
     public void setValueDao(IValueDao valueDao) {
         this.valueDao = valueDao;
+    }
+
+    @Autowired
+    public void setProductDao(IProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+    @Autowired
+    public void setAttributeDefinitionDao(IAttributeDefinitionDao attributeDefinitionDao) {
+        this.attributeDefinitionDao = attributeDefinitionDao;
     }
 
     @Autowired

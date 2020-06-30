@@ -60,6 +60,11 @@ public class AttributeDefinitionController {
         return attributeDefinitionService.deleteAttributeDefinitionById(id);
     }
 
+    @DeleteMapping("name/{name}")
+    public Boolean deleteAttributeDefinitionByName(@PathVariable String name) {
+        return attributeDefinitionService.deleteAttributeDefinitionByName(name);
+    }
+
     @Autowired
     public void setAttributeDefinitionService(IAttributeDefinitionService attributeDefinitionService) {
         this.attributeDefinitionService = attributeDefinitionService;

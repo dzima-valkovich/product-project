@@ -28,4 +28,6 @@ public interface IProductService {
     ProductSimpleDto updateProductIgnoreNull(ProductSimpleDto dto);
 
     Boolean deleteProductById(Long id);
+
+    Boolean deleteProductByName(String name);
 }

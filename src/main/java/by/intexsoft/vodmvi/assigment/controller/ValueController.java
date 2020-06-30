@@ -37,6 +37,11 @@ public class ValueController {
         return valueService.getValuesByProductId(productId);
     }
 
+    @GetMapping("/product/name/{productName}")
+    public List<ValueFullDto> getValuesByProductName(@PathVariable String productName) {
+        return valueService.getValuesByProductName(productName);
+    }
+
     @PostMapping
     public ValueFullDto createNewValue(@RequestBody ValueCreationDto dto) {
         return valueService.createNewValue(dto);

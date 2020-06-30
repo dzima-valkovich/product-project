@@ -30,4 +30,6 @@ public interface IAttributeDefinitionService {
     AttributeDefinitionSimpleDto updateAttributeDefinitionIgnoreNull(AttributeDefinitionSimpleDto dto);
 
     Boolean deleteAttributeDefinitionById(Long id);
+
+    Boolean deleteAttributeDefinitionByName(String name);
 }

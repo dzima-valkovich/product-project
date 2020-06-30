@@ -66,25 +66,29 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductSimpleDto createNewProduct(ProductSimpleDto dto) {
-        ProductSimpleDto newDto = productMapper.productToSimpleDto(productDao.save(productMapper.simpleDtoToProduct(dto)));
-        logger.info(String.format(PRODUCT_CREATION_MESSAGE, newDto.getId()));
+        Product product = productDao.save(productMapper.simpleDtoToProduct(dto));
+        ProductSimpleDto newDto = productMapper.productToSimpleDto(product);
+        logger.info(String.format(PRODUCT_CREATION_MESSAGE, product.getId()));
         return newDto;
     }
 
     @Override
     public ProductSimpleDto updateProduct(ProductSimpleDto dto) {
-        ProductSimpleDto newDto = productMapper.productToSimpleDto(productDao.update(productMapper.simpleDtoToProduct(dto)));
-        logger.info(String.format(PRODUCT_UPDATE_MESSAGE, newDto.getId()));
+        Product product = productDao.getByName(dto.getName());
+        product = productDao.update(productMapper.updateProductFromSimpleDto(dto, product));
+
+        ProductSimpleDto newDto = productMapper.productToSimpleDto(product);
+        logger.info(String.format(PRODUCT_UPDATE_MESSAGE, product.getId()));
         return newDto;
     }
 
     @Override
     public ProductSimpleDto updateProductIgnoreNull(ProductSimpleDto dto) {
-        Product product = productDao.getById(dto.getId());
+        Product product = productDao.getByName(dto.getName());
         product = productMapper.updateProductFromSimpleDtoIgnoreNull(dto, product);
 
         ProductSimpleDto newDto = productMapper.productToSimpleDto(product);
-        logger.info(String.format(PRODUCT_UPDATE_MESSAGE, newDto.getId()));
+        logger.info(String.format(PRODUCT_UPDATE_MESSAGE, product.getId()));
         return newDto;
     }
 
@@ -96,6 +100,16 @@ public class ProductService implements IProductService {
             logger.info(String.format(PRODUCT_DELETE_MESSAGE, id));
         }
         return result;
+    }
+
+    @Override
+    public Boolean deleteProductByName(String name) {
+        Product product = productDao.getByName(name);
+
+        if (product != null) {
+            return deleteProductById(product.getId());
+        }
+        return false;
     }
 
     @Autowired
