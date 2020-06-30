@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="010-29-06-2020--create-product-id-generator" author="dima.volkovitch@yandex.by"
+               runOnChange="true">
+        <createSequence sequenceName="sequence_ia_product_id" startValue="100"/>
+        <sql endDelimiter="\nGO">
+            CREATE OR REPLACE TRIGGER autoincrement_ia_product_id
+            BEFORE INSERT ON ia_products
+            FOR EACH ROW
+
+            BEGIN
+                SELECT sequence_ia_product_id.NEXTVAL
+                INTO :new.id
+                FROM dual;
+            END;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -14,4 +14,7 @@
     <include file="007-28-05-2020--add-some-values.xml" relativeToChangelogFile="true"/>
     <include file="008-26-06-2020--add-unique-product-name-constraint.xml" relativeToChangelogFile="true"/>
     <include file="009-26-06-2020--add-unique-attribute_definition-name-constraint.xml" relativeToChangelogFile="true"/>
+    <include file="010-29-06-2020--create-product-id-generator.xml" relativeToChangelogFile="true"/>
+    <include file="011-29-06-2020--create-attribute-definition-id-generator.xml" relativeToChangelogFile="true"/>
+    <include file="012-29-06-2020--create-value-id-generator.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

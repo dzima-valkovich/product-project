@@ -1,14 +1,13 @@
 package by.intexsoft.vodmvi.assigment.api.dao.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 public class IAEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Long getId() {
